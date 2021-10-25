@@ -1,0 +1,37 @@
+{
+  "name": "redis_chat",
+  "version": "1.0.0",
+  "main": "app.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "server": "nodemon app.js",
+    "client": "npm run start --prefix client",
+    "dev" : "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Guest0131/redis-chat.git"
+  },
+  "author": "Shadow7en",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Guest0131/redis-chat/issues"
+  },
+  "homepage": "https://github.com/Guest0131/redis-chat#readme",
+  "description": "",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "config": "^3.3.6",
+    "express": "^4.17.1",
+    "express-validator": "^6.13.0",
+    "jsonwebtoken": "^8.5.1",
+    "redis": "^3.1.2"
+  },
+  "devDependencies": {
+    "concurrently": "^6.3.0",
+    "nodemon": "^2.0.14"
+  }
+}

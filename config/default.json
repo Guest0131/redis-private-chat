@@ -1,0 +1,9 @@
+{
+    "port" : 5000,
+    "redis" : {
+        "host" : "localhost",
+        "port" : 6379,
+        "password" : "test"
+    },
+    "jwtSecret" : "SuperPuperSecret"
+}
