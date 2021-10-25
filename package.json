@@ -1,5 +1,5 @@
 {
-  "name": "redis_chat",
+  "name": "redis-private-chat",
   "version": "1.0.0",
   "main": "app.js",
   "directories": {
@@ -13,14 +13,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Guest0131/redis-chat.git"
+    "url": "git+https://github.com/Guest0131/redis-private-chat.git"
   },
   "author": "Shadow7en",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Guest0131/redis-chat/issues"
+    "url": "https://github.com/Guest0131/redis-private-chat/issues"
   },
-  "homepage": "https://github.com/Guest0131/redis-chat#readme",
+  "homepage": "https://github.com/Guest0131/redis-private-chat",
   "description": "",
   "dependencies": {
     "bcryptjs": "^2.4.3",
