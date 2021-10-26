@@ -3,7 +3,6 @@ import { Switch, Route, Redirect } from "react-router-dom"
 import { MainPage } from "./pages/MainPage"
 import { MessagePage } from "./pages/MessagePage"
 import { AuthPage } from "./pages/AuthPage"
-import { RegisterPage } from "./pages/RegisterPage"
 
 export const useRoutes = isAuthentificated => {
     if (isAuthentificated) {
@@ -12,7 +11,7 @@ export const useRoutes = isAuthentificated => {
                 <Route path="/" exact>
                     <MainPage></MainPage>
                 </Route>
-                <Route path="/message/:id" exact>
+                <Route path="/message" exact>
                     <MessagePage></MessagePage>
                 </Route>
                 <Redirect to="/" exact></Redirect>
@@ -24,9 +23,6 @@ export const useRoutes = isAuthentificated => {
         <Switch>
             <Route path="/" exact>
                 <AuthPage></AuthPage>
-            </Route>
-            <Route path="/register" exact>
-                <RegisterPage></RegisterPage>
             </Route>
             <Redirect to="/" exact></Redirect>
         </Switch>

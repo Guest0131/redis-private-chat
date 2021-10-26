@@ -60,6 +60,7 @@ router.post(
 router.post(
     '/login',
     [
+        check('username', 'Поле `Логин` не может быть пустым').isLength({ min : 1 }),
         check('username', 'Введите username').exists(),
         check('password', 'Введите пароль').exists(),
         check('password', 'Минимальная длина пароля 6 символов').isLength({ min: 6 })
@@ -82,7 +83,7 @@ router.post(
                 }
                 else {
                     if (reply) {
-                        const isMatch = bcrypt.compare(password, reply)
+                        const isMatch = bcrypt.compareSync(password, reply)
                         if (!isMatch) {
                             return res.status(400).json({ message: 'Неверный пароль. Попробуйте снова!'})
                         }

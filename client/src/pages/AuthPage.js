@@ -18,6 +18,10 @@ export const AuthPage = () => {
         clearError()
     }, [error, message, clearError])
 
+    useEffect(() => {
+        window.M.updateTextFields()
+    }, [])
+
     const changeHandler = event => {
         setForm({...form, [event.target.name]: event.target.value })
     }
@@ -39,11 +43,11 @@ export const AuthPage = () => {
 
     return (
         <div className="row">
-            <div className="col s6 offset-s3">
-                <h1>Redis private chat</h1>
+            <div className="col s6 offset-s3" style={{margin: '20% 25%'}}>
+                
                 <div className="card blue-grey darken-1">
                     <div className="card-content white-text">
-                        <span className="card-title">Авторизация</span>
+                        <span className="card-title">Redis PRIVATE CHAT</span>
                         <div>
 
                             <div className="input-field">
