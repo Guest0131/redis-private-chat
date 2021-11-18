@@ -13,7 +13,7 @@ export const Navbar = () => {
     }
     return (
         <nav>
-            <div class="nav-wrapper grey" 
+            <div class="nav-wrapper blue-grey darken-3" 
                     style={{
                         padding: '0 10%'
                     }}>
@@ -24,8 +24,6 @@ export const Navbar = () => {
                         Redis PRIVATE CHAT
                     </a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><NavLink to="/">Просмотр своих сообщения</NavLink></li>
-                    <li><NavLink to="/message">Просмотр других сообщения</NavLink></li>
                     <li><a href="/" onClick={logoutHandler}>Выйти</a></li>
                 </ul>
             </div>

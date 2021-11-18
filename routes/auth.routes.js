@@ -108,4 +108,5 @@ router.post(
             res.status(500).json({ message: 'Что пошло не так, попробуйте снова' })
         }
     })
+
 module.exports = router

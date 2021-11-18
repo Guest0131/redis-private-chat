@@ -3,3 +3,38 @@
 input#login {
     color:#26a69a
 }
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.chat-box {
+    height: 600px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+
+.chat {
+    border: 1px solid transparent;
+    border-radius: 5px;;
+}
+.chat-item {
+    border: none;
+}
+.chat-item:focus {
+    background-color : red;
+}
+textarea {
+    focus: none;
+}
+
+.message-time {
+    float: right;
+    font-size: 16pt;
+    border: 1px solid rgba(204, 204, 204, 0.404);
+    border-radius: 5px;
+    padding: 5px;
+}
