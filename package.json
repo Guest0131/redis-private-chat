@@ -5,10 +5,9 @@
   "directories": {
     "doc": "docs"
   },
-  "eslint-disable-next-line": true,
   "scripts": {
     "start": "node app.js",
-    "server": "nodemon app.js",
+    "server": "nodemon app.js --ignore client",
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },

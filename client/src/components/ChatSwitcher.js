@@ -1,20 +1,25 @@
 import React, {useState, useEffect} from "react";
+import {useHttp} from '../hooks/http.hook'
+import {CreateChat} from "./CreateChat"
+
 
 export const Switch = (props) => {
-    var [selected, setSelected] = useState('chat-item collection-item')
-    if (props.currentChat == props.chatName) {
-        setSelected('chat-item collection-item grey lighten')
+    var selected ='chat-item collection-item'
+    if (props.currentChat != null && props.currentChat.name == props.chatName) {
+        selected = 'chat-item collection-item grey lighten'
+    } else {
+        selected = 'chat-item collection-item'
     }
-
-    useEffect(() =>{
-        console.log(props.currentChat)
-    }, [props.currentChat])
     
     
     return (
-        <li className={selected}
+        <li id={props.id} className={selected}
             onClick={ () => {
-                    props.chatSwitcher(props.chatName)
+                    for (var c of props.chatsData) {
+                        if (c['id'] == props.id) {
+                            props.chatSwitcher(c)
+                        }
+                    }
                 }
             }>
                 {props.chatName}
@@ -24,48 +29,100 @@ export const Switch = (props) => {
 
 export const ChatSwitcher = (props) => {
     
-    var chatsNames = ["Chat1", "Chat2", "Chat3", "Chat4"]
+    const {loading, request, error, clearError} = useHttp()
+   
+    var [swithches, setSwitches] = useState([])
+    var [renderSwitches, setRenderSwitches] = useState([])
 
-    var switchesArr = []
-    for (var c of chatsNames) {
-        switchesArr.push(
-            <Switch 
-                chatName={c}
-                currentChat={props.chat}
-                chatSwitcher={props.chatSwitcher}
-            />)
+    const chatsLoader = async () => {
+        try {
+            const data = await request('api/message/get_all_chats', 'POST')
+            setSwitches(data)
+
+            var tmpResult = []
+            for(var c of data) {
+                tmpResult.push(
+                    <Switch 
+                        id={c['id']}
+                        chatName={c['name']}
+                        currentChat={props.chat}
+                        chatSwitcher={props.chatSwitcher}
+                        chatsData={data}
+                    />)
+            }
+            setRenderSwitches(tmpResult)
+            if (props.chat) {
+                findChatHandler()
+            }
+            
+
+
+        } catch (e) { }
     }
 
-    var [swithches, setSwitches] = useState(switchesArr)
+    
+    
+
+    
 
     const findChatHandler = () => {
         var tmpResult = []
-        for (var c of chatsNames) {
-            if (c.indexOf(document.getElementById("searchInput").value) != -1) {
+        var needleChat = document.getElementById("searchInput").value
+        
+        for (var c of swithches) {
+            if (c['name'].indexOf(needleChat) != -1 || c['key'] == needleChat || needleChat == '') {
                 tmpResult.push(
                     <Switch 
-                        chatName={c}
+                        id={c['id']}
+                        chatName={c['name']}
                         currentChat={props.chat}
                         chatSwitcher={props.chatSwitcher}
+                        chatsData={swithches}
                     />)
             }
         }
 
-        setSwitches(tmpResult)
+        setRenderSwitches(tmpResult)
     }
 
+    const effect = useEffect(async () =>{
+        chatsLoader()
+        
+        try {
+            if (props.chat) {
+                window['stopGameAndDropButton']()
+            }
+            
+        } catch (e) { }
+        
+        
+    }, [props])
 
+    
+    
+    
 
     return (
-        <div className="col s4">
+    <div className="col s4">
         <div className="input-field col s12">
             <i class="material-icons prefix">search</i>
-            <textarea id="searchInput" className="materialize-textarea" onChange={findChatHandler}></textarea>
+            <textarea id="searchInput" className="materialize-textarea" style={{width: '70%'}} onChange={findChatHandler}></textarea>
             <label for="textarea1">Find chat</label>
+
+            <button data-target="modalChat" class="btn-floating btn-small waves-effect waves-light black modal-trigger" style={{
+                marginTop: "-50px",
+                marginLeft: "5px"
+            }}>
+                <i class="material-icons">add</i>
+            </button>
         </div>
         <ul className="collection chat" >
-            {swithches}
+            {renderSwitches}
         </ul>
+
+        <CreateChat />
+        {window['startListener']()}
+        
     </div>
     );
 }

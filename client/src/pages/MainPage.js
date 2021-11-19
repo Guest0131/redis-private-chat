@@ -14,9 +14,6 @@ export const MainPage = () => {
 
     const [curentChat, setCurrentChat] = useState(false)
     
-
-
-
     return (
         <div className="row" style={{
             backgroundColor: "rgba(255, 255, 255, 0.8)"
@@ -27,7 +24,7 @@ export const MainPage = () => {
                 chatSwitcher={setCurrentChat}
             />
             <ChatBox 
-                title={curentChat}
+                currentChat={curentChat}
             />
 
         </div>
