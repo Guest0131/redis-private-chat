@@ -3,12 +3,13 @@ import {useHttp} from '../hooks/http.hook'
 import {CreateChat} from "./CreateChat"
 
 
+
 export const Switch = (props) => {
-    var selected ='chat-item collection-item'
+    var selected ='chat-item collection-item switcher'
     if (props.currentChat != null && props.currentChat.name == props.chatName) {
-        selected = 'chat-item collection-item grey lighten'
+        selected = 'chat-item collection-item grey lighten switcher'
     } else {
-        selected = 'chat-item collection-item'
+        selected = 'chat-item collection-item switcher'
     }
     
     
@@ -41,14 +42,18 @@ export const ChatSwitcher = (props) => {
 
             var tmpResult = []
             for(var c of data) {
-                tmpResult.push(
-                    <Switch 
-                        id={c['id']}
-                        chatName={c['name']}
-                        currentChat={props.chat}
-                        chatSwitcher={props.chatSwitcher}
-                        chatsData={data}
-                    />)
+               
+                if (c.members.includes(props.auth.username)) {
+                    tmpResult.push(
+                        <Switch 
+                            id={c['id']}
+                            chatName={c['name']}
+                            currentChat={props.chat}
+                            chatSwitcher={props.chatSwitcher}
+                            chatsData={data}
+                        />)
+                }
+                
             }
             setRenderSwitches(tmpResult)
             if (props.chat) {
@@ -70,7 +75,7 @@ export const ChatSwitcher = (props) => {
         var needleChat = document.getElementById("searchInput").value
         
         for (var c of swithches) {
-            if (c['name'].indexOf(needleChat) != -1 || c['key'] == needleChat || needleChat == '') {
+            if ((c['name'].indexOf(needleChat) != -1 && c.members.includes(props.auth.username)) || c['key'] == needleChat) {
                 tmpResult.push(
                     <Switch 
                         id={c['id']}
@@ -85,7 +90,7 @@ export const ChatSwitcher = (props) => {
         setRenderSwitches(tmpResult)
     }
 
-    const effect = useEffect(async () =>{
+    useEffect(async () =>{
         chatsLoader()
         
         try {

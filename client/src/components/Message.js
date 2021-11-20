@@ -12,12 +12,11 @@ export const Message = (props) => {
                     <div className="card-content white-text">
                         <span className="card-title">
                             {props.author}
-                            <span className="message-time"> {props.time} </span>
                         </span>
                         <p>{props.text}</p>
                     </div>
                     <div className="card-action">
-                        <span className="orange-text">TTL : 1225 </span>
+                        <span className="orange-text">TTL : {props.time - Math.round(new Date().getTime() / 1000)} </span>
                     </div>
                 </div>
             </div>

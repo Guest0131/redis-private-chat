@@ -38,3 +38,53 @@ textarea {
     border-radius: 5px;
     padding: 5px;
 }
+
+.copy {
+    background-color: transparent;
+    padding: 2px;
+    border: 1px solid rgba(204, 204, 204, 0.5);
+    border-radius: 10px;
+
+    margin-top: -2px;
+}
+.copy:hover {
+    cursor: pointer;
+    background-color: rgba(204,204,204, 0.5);
+}
+
+.switcher:hover {
+    cursor: pointer;
+    background-color: rgba(204, 204, 204, 0.4)
+}
+
+.btn-member {
+    background-color: transparent;
+    color: black;
+    border: 1px transparent;
+    box-shadow: none;
+    font-size: 10px;
+    padding: 0 10px;
+}
+
+.btn-member:hover {
+    background-color: rgba(204, 204, 204, 0.4);
+    color: black;
+    border: 1px transparent;
+    box-shadow: none;
+    font-size: 10px;
+    padding: 0 10px;
+}
+
+#newMessage {
+    width: 70%;
+    padding-left: 15px;
+}
+
+#newMessageTtl {
+    width: 50px;
+    
+    border: 3px solid #555555;
+    border-radius: 5px;
+    text-align: center;
+    position: absolute;
+}

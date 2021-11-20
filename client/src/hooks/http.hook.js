@@ -1,6 +1,8 @@
 import {useState, useCallback} from 'react'
 
 
+
+
 export const useHttp = () => {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(false)
@@ -18,7 +20,7 @@ export const useHttp = () => {
 
             const response = await fetch(new Request(url, { method, body, headers }))
             const data = await response.json()
-            console.log(data)
+            
             if (!response.ok) {
                 if (data.errors) {
                     for (var er of data.errors) { setError(er.msg) }
